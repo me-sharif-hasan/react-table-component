@@ -1,0 +1,33 @@
+.status_button{
+    background: #d9e1dc;
+    border: 1px solid #a8a8a8;
+    border-radius: 3px;
+    min-width: 130px;
+    position: relative;
+    text-align: left;
+    padding: 8px 20px 8px 10px;
+    color: #3f3f3f;
+}
+.status_button.positive{
+    color: #3c976f;
+    border: 1px #3c976f solid;
+}
+.status_button i{
+    position: absolute;
+    right: 5px;
+}
+
+.action_button{
+    background: #8e70b2;
+    padding: 10px 20px 10px 30px;
+    font-weight: bolder;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.more-icon{
+    margin-left: 10px;
+    margin-top: 10px;
+}
