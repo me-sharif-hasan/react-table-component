@@ -21,11 +21,12 @@ const CustomReactDataTable = ({columns,className,data}:ReactTablePropsTypes) => 
     }
 
     useEffect(()=>{
-        //match body and columns number based on number of columns provided!
+        //match body and columns number based on max number of columns provided!
         let targetLen=(columns?.length)??0;
         data?.forEach((row)=>targetLen=Math.max(row.length,targetLen));
         //match columns names by <unnamed>
         while (columns?.length!=undefined&&columns?.length<targetLen) columns?.push({title:'<unnamed>'})
+        //if any row has less column
         data?.forEach((row)=>{
            if(row.length<targetLen){
                while (row.length<targetLen){
