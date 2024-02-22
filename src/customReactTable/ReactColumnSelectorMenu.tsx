@@ -12,14 +12,28 @@ const ReactColumnSelectorMenu = ({columns,onSelectColumns}:ColumnSelectorTypes) 
     const [selectedListIndex,setSelectedListIndex]=useState<number[]>([]);
 
 
+    /**
+     * Load data from localstorage to load history of previous column operation
+     * else try default
+     */
     useEffect(()=>{
-       columns?.forEach((column,idx)=>{
-           if(column.selected||column.selected==null) selectedListIndex.push(idx);
-       });
+        const data=localStorage.getItem('visible-column');
+        //check if localstorage have preferences set
+        if(data!=null){
+            const ids:number[]=JSON.parse(data);
+            while (selectedListIndex.length>0) selectedListIndex.pop();
+            ids.forEach(idx=>selectedListIndex.push(idx));
+        }else{
+            columns?.forEach((column,idx)=>{
+                if(column.selected||column.selected==null) selectedListIndex.push(idx);
+            });
+        }
        setSelectedListIndex([...selectedListIndex]);
     },[]);
 
     useEffect(()=>{
+        localStorage.removeItem('visible-column');
+        localStorage.setItem('visible-column',JSON.stringify(selectedListIndex));
         onSelectColumns?onSelectColumns(selectedListIndex):null;
     },[selectedListIndex])
 
@@ -57,7 +71,7 @@ const ReactColumnSelectorMenu = ({columns,onSelectColumns}:ColumnSelectorTypes) 
                                             });
                                         }
                                         setSelectedListIndex([...newList]);
-                                    }} id={`marker-${index}`} type={'checkbox'} defaultChecked={selectionData.indexOf(index)!=-1}/> <span>{column.title}</span>
+                                    }} id={`marker-${index}`} type={'checkbox'} checked={selectionData.indexOf(index)!=-1}/> <span>{column.title}</span>
                                 </label>
                             )
                         })
