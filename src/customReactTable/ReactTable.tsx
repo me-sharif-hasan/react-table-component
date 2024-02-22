@@ -3,13 +3,24 @@ import "./style.css"
 import ReactTableBody from "./ReactTableBody.tsx";
 import ReactColumnSelectorMenu from "./ReactColumnSelectorMenu.tsx";
 import {useEffect, useState} from "react";
+
+/**
+ *
+ * @param columns List of column heading
+ * @param className Custom class name.
+ * @param data 2D matrix representing the table data. Each cell is TableCell type
+ * @constructor
+ */
 const CustomReactDataTable = ({columns,className,data}:ReactTablePropsTypes) => {
 
-
     const [selectedColumns,setSelectedColumns]=useState<ReactColumnType[]>([]);
-
     const [selectedColumnIndexes,setSelectedColumnIndexes]=useState<number[]>([]);
 
+    /**
+     *
+     * @param columns list of original columns
+     * @param selectedIndexes list of already selected indexes
+     */
     const setSelectedColumnsBasedOnSelectedIndexes = (columns:ReactColumnType[],selectedIndexes:number[]) => {
         const newList:ReactColumnType[]=[];
         columns.forEach((column,idx)=>{
@@ -20,6 +31,9 @@ const CustomReactDataTable = ({columns,className,data}:ReactTablePropsTypes) => 
         setSelectedColumns([...newList]);
     }
 
+    /**
+     * Preprocesses data to represent them perfectly
+     */
     useEffect(()=>{
         //match body and columns number based on max number of columns provided!
         let targetLen=(columns?.length)??0;
@@ -36,6 +50,7 @@ const CustomReactDataTable = ({columns,className,data}:ReactTablePropsTypes) => 
         });
         if(columns!=undefined) setSelectedColumnsBasedOnSelectedIndexes(columns,selectedColumnIndexes);
     },[columns]);
+
     return (
         <div className={className??'rt_container'}>
             <div className={'table_info_section'}>

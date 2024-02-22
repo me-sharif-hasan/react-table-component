@@ -4,6 +4,12 @@ interface ReactTableBodyTypes extends ReactTablePropsTypes{
     selectedColumnIndexes:number[]
 }
 
+/**
+ *
+ * @param data A 2d matrix containing @type TableCell in each cell
+ * @param selectedColumnIndexes Indexes of the selected columns to show or hide them
+ * @constructor
+ */
 const ReactTableBody = ({data,selectedColumnIndexes}:ReactTableBodyTypes) => {
     return (
         <div className={'table_body'}>

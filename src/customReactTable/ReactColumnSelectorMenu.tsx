@@ -5,6 +5,12 @@ interface ColumnSelectorTypes extends ReactTablePropsTypes{
     onSelectColumns?:(column_indexs:number[])=>void,
 }
 
+/**
+ *
+ * @param columns Heading of each column
+ * @param onSelectColumns What happens when column selection changes
+ * @constructor
+ */
 const ReactColumnSelectorMenu = ({columns,onSelectColumns}:ColumnSelectorTypes) => {
 
     const [showContextMenu,setShowContextMenu]=useState(false);
@@ -31,12 +37,18 @@ const ReactColumnSelectorMenu = ({columns,onSelectColumns}:ColumnSelectorTypes) 
        setSelectedListIndex([...selectedListIndex]);
     },[]);
 
+    /**
+     * Save changes in visible columns to local storage
+     */
     useEffect(()=>{
         localStorage.removeItem('visible-column');
         localStorage.setItem('visible-column',JSON.stringify(selectedListIndex));
         onSelectColumns?onSelectColumns(selectedListIndex):null;
-    },[selectedListIndex])
+    },[selectedListIndex]);
 
+    /**
+     * Memoize selection to avoid refreshing on re-render
+     */
     const selectionData=useMemo(()=>{
         return selectedListIndex;
     },[selectedListIndex]);

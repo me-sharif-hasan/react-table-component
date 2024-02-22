@@ -3,21 +3,17 @@ import "./assets/fontawesome/css/fontawesome.min.css"
 import "./assets/fontawesome/css/solid.min.css"
 import ReactTable from "./customReactTable/ReactTable.tsx";
 
-const columns=[
+const columns = [
     {title: "Title"},
     {title: "Categories"},
     {title: "Price"},
     {title: "Date"},
-    {title:"Author"},
-    {
-        title:"Status",
-    },
-    {
-        title:"Action"
-    }
+    {title: "Author"},
+    {title: "Status",},
+    {title: "Action"}
 ];
 
-const tableData=[
+const tableData = [
     [
         {
             content: (
@@ -29,16 +25,16 @@ const tableData=[
             ),
         },
         {
-            content:"Course"
+            content: "Course"
         },
         {
-            content:"200$"
+            content: "200$"
         },
         {
             content: <>February 04, 2024 <br/> 11:26 AM</>
         },
         {
-            content:"admin"
+            content: "admin"
         },
         {
             content: (
@@ -51,7 +47,8 @@ const tableData=[
         {
             content: (
                 <>
-                    <button className={'action_button'}>Edit</button><br/>
+                    <button className={'action_button'}>Edit</button>
+                    <br/>
                     <i className={'fa fa-bars more-icon'}></i>
                 </>
             )
@@ -66,16 +63,16 @@ const tableData=[
             )
         },
         {
-            content:"Course"
+            content: "Course"
         },
         {
-            content:"150$"
+            content: "150$"
         },
         {
             content: <>February 04, 2024 <br/> 11:26 AM</>
         },
         {
-            content:"admin"
+            content: "admin"
         },
         {
             content: (
@@ -88,7 +85,8 @@ const tableData=[
         {
             content: (
                 <>
-                    <button className={'action_button'}>Edit</button><br/>
+                    <button className={'action_button'}>Edit</button>
+                    <br/>
                     <i className={'fa fa-bars more-icon'}></i>
                 </>
             )
@@ -98,14 +96,14 @@ const tableData=[
 
 function App() {
 
-  return (
-    <>
-      <ReactTable
-          columns={columns}
-          data={tableData}
-      />
-    </>
-  )
+    return (
+        <>
+            <ReactTable
+                columns={columns}
+                data={tableData}
+            />
+        </>
+    )
 }
 
 export default App
